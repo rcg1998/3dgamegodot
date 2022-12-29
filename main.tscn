@@ -1,0 +1,2306 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Desert_Road/Desert_Road_MaskMap.png" type="Texture" id=2]
+[ext_resource path="res://cobblestone_floor_001/cobblestone_floor_001_rough_2k.jpg" type="Texture" id=3]
+[ext_resource path="res://cobblestone_floor_001/cobblestone_floor_001_diff_2k.jpg" type="Texture" id=4]
+[ext_resource path="res://Desert_Road/Desert_Road_Normal.png" type="Texture" id=5]
+[ext_resource path="res://Desert_Road/Desert_Road_Height.png" type="Texture" id=6]
+[ext_resource path="res://cobblestone_floor_001/cobblestone_floor_001_nor_2k.png" type="Texture" id=7]
+[ext_resource path="res://cobblestone_floor_001/cobblestone_floor_001_disp_1k.png" type="Texture" id=8]
+[ext_resource path="res://golems/fire elemental FBX/Textures/Albedo FireElemental.png" type="Texture" id=9]
+[ext_resource path="res://golems/Fire elemental BLEND/Textures/Rougness FireElemental.png" type="Texture" id=10]
+[ext_resource path="res://golems/Fire elemental BLEND/Textures/Emission FireElemental.png" type="Texture" id=11]
+[ext_resource path="res://Desert_Road/Desert_Road_BaseColor.png" type="Texture" id=12]
+[ext_resource path="res://golems/Fire elemental BLEND/Textures/Normal FireElemental.png" type="Texture" id=13]
+[ext_resource path="res://metiorito.gd" type="Script" id=14]
+[ext_resource path="res://golems/textures/Emission FireElemental.png" type="Texture" id=17]
+[ext_resource path="res://soudntrack.mp3" type="AudioStream" id=20]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 1.00152
+height = 1.01686
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="PrismMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 9 )
+roughness = 0.94
+roughness_texture = ExtResource( 10 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 4.36
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 11 )
+normal_enabled = true
+normal_scale = 1.95
+normal_texture = ExtResource( 13 )
+
+[sub_resource type="SphereShape" id=7]
+radius = 1.09728
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 4 )
+roughness = 0.44
+roughness_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 5.28
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 17 )
+normal_enabled = true
+normal_scale = 3.22
+normal_texture = ExtResource( 7 )
+detail_enabled = true
+detail_mask = ExtResource( 8 )
+detail_blend_mode = 0
+detail_uv_layer = 0
+detail_albedo = ExtResource( 4 )
+detail_normal = ExtResource( 7 )
+
+[sub_resource type="CylinderMesh" id=10]
+
+[sub_resource type="PhysicsMaterial" id=11]
+friction = 0.09
+
+[sub_resource type="SphereShape" id=12]
+radius = 0.484837
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 12 )
+roughness = 0.95
+roughness_texture = ExtResource( 6 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 5 )
+rim_enabled = true
+rim = 0.75
+rim_tint = 1.0
+rim_texture = ExtResource( 2 )
+
+[sub_resource type="PhysicsMaterial" id=13]
+friction = 4.0
+rough = true
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=14]
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.192157, 0.282353, 0.109804, 1 )
+
+[sub_resource type="BoxShape" id=16]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( -0.999877, 0, -0.015655, 0, 1, 0, 0.015655, 0, -0.999877, 0, 1.06706, -291.417 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.640043, 1.73643, -0.048584 )
+fov = 67.8322
+
+[node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.652514, 0.171045, 0.165794 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/CollisionShape"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+
+[node name="daños aereos" type="Spatial" parent="."]
+
+[node name="metiorito" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -9.71619 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito6" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -31.1655 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito6"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito6/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito7" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -45.4601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito7/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito2" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 2.85963, 22.5412, 2.6847 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito2/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito3" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.724047, 32.7429, 8.40795 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito3/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito4" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.62472, 36.2601, 15.5979 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito4/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito5" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.77187, 36.7515, 4.11523 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito5/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito8" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -31.7162 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito8"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito8/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito9" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -53.1655 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito9"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito9/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito10" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -67.4601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito10"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito10/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito11" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 2.85963, 22.5412, -19.3153 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito11"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito11/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito12" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.724047, 32.7429, -13.5921 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito12"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito12/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito13" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.62472, 36.2601, -6.40207 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito13"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito13/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito14" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.77187, 36.7515, -17.8848 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito14"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito14/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito15" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -66.3093 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito15"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito15/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito16" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -87.7586 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito16"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito16/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito17" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -102.053 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito17"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito17/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito18" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.12023, 28.8249, -53.9084 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito18"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito18/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito19" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.463453, 39.0265, -48.1852 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito19"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito19/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito20" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.88532, 42.5437, -40.9952 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito20"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito20/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito21" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.51128, 43.0352, -52.4779 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito21"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito21/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito22" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -106.422 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito22"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito22/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito23" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -127.871 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito23"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito23/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito24" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -142.166 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito24"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito24/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito25" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.12023, 28.8249, -94.0213 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito25"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito25/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito26" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.463453, 39.0265, -88.298 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito26"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito26/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito27" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.88532, 42.5437, -81.1081 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito27"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito27/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito28" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.51128, 43.0352, -92.5908 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito28"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito28/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito29" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -120.974 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito29"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito29/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito30" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -142.424 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito30"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito30/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito31" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -156.718 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito31"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito31/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito32" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 5.31115, 41.0066, -108.573 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito32"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito32/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito33" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.72747, 51.2083, -102.85 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito33"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito33/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito34" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 4.07624, 54.7254, -95.6601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito34"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito34/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito35" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.320352, 55.2169, -107.143 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito35"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito35/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito36" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -141.348 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito36"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito36/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito37" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -162.797 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito37"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito37/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito38" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -177.091 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito38"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito38/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito39" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.260851, 42.1085, -128.947 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito39"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito39/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito40" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -3.84453, 52.3101, -123.223 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito40"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito40/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito41" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -1.49576, 55.8273, -116.033 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito41"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito41/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito42" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -5.89235, 56.3188, -127.516 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito42"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito42/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito43" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -178.502 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito43"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito43/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito44" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -199.952 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito44"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito44/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito45" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -214.246 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito45"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito45/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito46" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.260851, 42.1085, -166.101 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito46"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito46/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito47" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -3.84453, 52.3101, -160.378 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito47"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito47/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito48" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -1.49576, 55.8273, -153.188 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito48"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito48/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito49" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -5.89235, 56.3188, -164.671 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito49"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito49/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito50" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -190.38 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito50"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito50/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito51" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -211.83 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito51"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito51/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito52" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -226.124 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito52"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito52/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito53" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.13607, 48.8504, -177.98 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito53"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito53/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito54" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.447613, 59.0521, -172.256 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito54"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito54/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito55" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.90116, 62.5693, -165.066 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito55"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito55/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito56" type="MeshInstance" parent="daños aereos"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.49544, 63.0607, -176.549 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito56"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito56/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito57" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 3.26064, 48.9157, -212.898 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito57"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito57/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito58" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 2.74482, 48.9157, -191.455 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito58"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito58/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito59" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 2.40106, 48.9157, -177.164 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito59"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito59/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito60" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, -2.26506, 48.8504, -225.435 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito60"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito60/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito61" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 1.45522, 59.0521, -231.071 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito61"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito61/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito62" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, -0.719967, 62.5693, -238.315 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito62"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito62/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito63" type="MeshInstance" parent="daños aereos"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 3.39922, 63.0607, -226.73 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos/metiorito63"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos/metiorito63/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="Mejoras" type="Spatial" parent="."]
+
+[node name="Escudo" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 2.19502, 2.41561, -13.2673 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo2" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 3.17671, 1.69887, -31.0403 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo2"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo2/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo3" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -2.61301, 1.85253, -42.3214 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo3"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo3/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo4" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 3.17671, 3.65072, -61.1542 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo4"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo4/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo5" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -4.34713, 1.44908, -96.2279 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo5"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo5/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo6" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -0.254307, 5.93359, -135.083 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo6"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo6/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo7" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -0.576472, 2.77281, -191.827 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo7"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo7/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo8" type="MeshInstance" parent="Mejoras"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 16.8559, 3.65072, -139.192 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras/Escudo8"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras/Escudo8/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="musica" type="Spatial" parent="."]
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -48.8335 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -48.5345 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -2.36225 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -2.06326 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -68.3036 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -68.0046 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D15" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -84.254 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D16" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -83.955 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D17" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -103.265 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D18" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -102.966 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D19" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -120.405 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D20" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -120.106 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D21" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -147.837 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D22" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -147.538 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D23" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -169.597 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D24" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -169.298 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D25" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -186.263 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D26" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -185.964 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D27" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -203.148 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D28" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -202.849 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D29" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -211.79 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D30" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -211.491 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D31" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -230.529 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D32" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -230.23 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D33" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -253.483 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D34" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -253.184 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D35" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -277.218 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D36" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -276.919 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -31.0076 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -30.7087 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D11" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -19.6622 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D12" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -19.3632 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D13" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, 11.5772 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D14" type="AudioStreamPlayer3D" parent="musica"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, 11.8762 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="Plataforma" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -52.1916 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance2"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance2/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -105.906 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance3"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance3/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -163.319 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance4"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance4/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -218.504 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance5"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance5/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="Plataforma"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -271.999 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma/MeshInstance6"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma/MeshInstance6/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="daños aereos2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 359.949 )
+
+[node name="metiorito" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -9.71619 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito6" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -31.1655 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito6"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito6/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito7" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -45.4601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito7/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito2" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 2.85963, 22.5412, 2.6847 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito2/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito3" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.724047, 32.7429, 8.40795 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito3/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito4" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.62472, 36.2601, 15.5979 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito4/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito5" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.77187, 36.7515, 4.11523 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito5/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito8" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -31.7162 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito8"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito8/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito9" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -53.1655 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito9"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito9/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito10" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.96597, 22.6065, -67.4601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito10"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito10/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito11" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 2.85963, 22.5412, -19.3153 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito11"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito11/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito12" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.724047, 32.7429, -13.5921 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito12"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito12/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito13" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.62472, 36.2601, -6.40207 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito13"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito13/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito14" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.77187, 36.7515, -17.8848 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito14"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito14/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito15" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -66.3093 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito15"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito15/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito16" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -87.7586 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito16"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito16/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito17" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -102.053 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito17"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito17/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito18" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.12023, 28.8249, -53.9084 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito18"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito18/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito19" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.463453, 39.0265, -48.1852 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito19"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito19/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito20" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.88532, 42.5437, -40.9952 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito20"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito20/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito21" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.51128, 43.0352, -52.4779 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito21"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito21/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito22" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -106.422 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito22"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito22/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito23" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -127.871 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito23"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito23/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito24" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.70537, 28.8901, -142.166 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito24"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito24/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito25" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.12023, 28.8249, -94.0213 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito25"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito25/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito26" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.463453, 39.0265, -88.298 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito26"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito26/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito27" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.88532, 42.5437, -81.1081 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito27"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito27/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito28" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.51128, 43.0352, -92.5908 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito28"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito28/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito29" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -120.974 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito29"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito29/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito30" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -142.424 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito30"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito30/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito31" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.514449, 41.0719, -156.718 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito31"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito31/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito32" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 5.31115, 41.0066, -108.573 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito32"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito32/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito33" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.72747, 51.2083, -102.85 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito33"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito33/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito34" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 4.07624, 54.7254, -95.6601 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito34"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito34/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito35" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.320352, 55.2169, -107.143 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito35"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito35/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito36" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -141.348 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito36"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito36/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito37" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -162.797 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito37"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito37/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito38" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -177.091 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito38"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito38/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito39" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.260851, 42.1085, -128.947 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito39"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito39/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito40" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -3.84453, 52.3101, -123.223 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito40"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito40/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito41" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -1.49576, 55.8273, -116.033 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito41"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito41/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito42" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -5.89235, 56.3188, -127.516 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito42"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito42/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito43" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -178.502 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito43"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito43/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito44" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -199.952 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito44"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito44/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito45" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -6.08645, 42.1738, -214.246 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito45"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito45/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito46" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.260851, 42.1085, -166.101 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito46"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito46/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito47" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -3.84453, 52.3101, -160.378 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito47"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito47/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito48" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -1.49576, 55.8273, -153.188 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito48"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito48/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito49" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -5.89235, 56.3188, -164.671 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito49"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito49/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito50" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -190.38 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito50"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito50/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito51" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -211.83 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito51"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito51/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito52" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.68953, 48.9157, -226.124 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito52"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito52/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito53" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 3.13607, 48.8504, -177.98 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito53"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito53/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito54" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -0.447613, 59.0521, -172.256 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito54"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito54/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito55" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, 1.90116, 62.5693, -165.066 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito55"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito55/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito56" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( -0.999969, 0.00783641, 0, -0.00783641, -0.999969, 0, 0, 0, 1, -2.49544, 63.0607, -176.549 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito56"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito56/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito57" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 3.26064, 48.9157, -212.898 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito57"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito57/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito58" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 2.74482, 48.9157, -191.455 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito58"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito58/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito59" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 2.40106, 48.9157, -177.164 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 8 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito59"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito59/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito60" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, -2.26506, 48.8504, -225.435 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito60"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito60/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito61" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 1.45522, 59.0521, -231.071 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito61"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito61/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito62" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, -0.719967, 62.5693, -238.315 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito62"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito62/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="metiorito63" type="MeshInstance" parent="daños aereos2"]
+transform = Transform( 0.99968, -0.00783415, 0.0240483, -0.00783641, -0.999969, 0, 0.0240476, -0.000188452, -0.999711, 3.39922, 63.0607, -226.73 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 9 )
+script = ExtResource( 14 )
+
+[node name="RigidBody" type="RigidBody" parent="daños aereos2/metiorito63"]
+
+[node name="CollisionShape" type="CollisionShape" parent="daños aereos2/metiorito63/RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018981, -0.179522, 0.0778277 )
+shape = SubResource( 7 )
+
+[node name="Mejoras2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 359.949 )
+
+[node name="Escudo" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 2.19502, 2.41561, -13.2673 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo2" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 3.17671, 1.69887, -31.0403 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo2"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo2/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo3" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -2.61301, 1.85253, -42.3214 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo3"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo3/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo4" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 3.17671, 3.65072, -61.1542 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo4"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo4/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo5" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -4.34713, 1.44908, -96.2279 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo5"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo5/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo6" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -0.254307, 5.93359, -135.083 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo6"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo6/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo7" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, -0.576472, 2.77281, -191.827 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo7"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo7/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="Escudo8" type="MeshInstance" parent="Mejoras2"]
+transform = Transform( 0.832612, 0.00553664, 0.0146136, 0, 0.000263852, -0.999652, -0.553857, 0.00832322, 0.0219686, 16.8559, 3.65072, -139.192 )
+mesh = SubResource( 10 )
+
+[node name="SoftBody" type="StaticBody" parent="Mejoras2/Escudo8"]
+physics_material_override = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mejoras2/Escudo8/SoftBody"]
+shape = SubResource( 12 )
+
+[node name="musica2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 359.949 )
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -48.8335 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -48.5345 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -2.36225 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -2.06326 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -68.3036 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -68.0046 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D15" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -84.254 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D16" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -83.955 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D17" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -103.265 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D18" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -102.966 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D19" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -120.405 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D20" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -120.106 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D21" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -147.837 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D22" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -147.538 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D23" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -169.597 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D24" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -169.298 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D25" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -186.263 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D26" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -185.964 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D27" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -203.148 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D28" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -202.849 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D29" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -211.79 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D30" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -211.491 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D31" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -230.529 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D32" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -230.23 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D33" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -253.483 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D34" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -253.184 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D35" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -277.218 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D36" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -276.919 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -31.0076 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -30.7087 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D11" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, -19.6622 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D12" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, -19.3632 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D13" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, -3.61458, -0.147559, 11.5772 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D14" type="AudioStreamPlayer3D" parent="musica2"]
+transform = Transform( 0.0587101, -0.0128659, -0.998192, -0.82701, -0.56066, -0.0414153, -0.559114, 0.827946, -0.0435567, 3.46971, 0.0987988, 11.8762 )
+stream = ExtResource( 20 )
+autoplay = true
+
+[node name="Plataforma2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 359.949 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -52.1916 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance2"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance2/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -105.906 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance3"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance3/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -163.319 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance4"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance4/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -218.504 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance5"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance5/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="Plataforma2"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 25, 0, 0, -271.999 )
+mesh = SubResource( 3 )
+skeleton = NodePath("StaticBody")
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Plataforma2/MeshInstance6"]
+physics_material_override = SubResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Plataforma2/MeshInstance6/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="puntos de control" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 42.5992 )
+
+[node name="MeshInstance" type="MeshInstance" parent="puntos de control"]
+transform = Transform( 2, 0, 0, 0, 0.01, 0, 0, 0, 15, 0, 0, 0 )
+mesh = SubResource( 14 )
+material/0 = SubResource( 15 )
+
+[node name="StaticBody" type="StaticBody" parent="puntos de control/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="puntos de control/MeshInstance/StaticBody"]
+shape = SubResource( 16 )
